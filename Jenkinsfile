@@ -1,15 +1,15 @@
 pipeline {
-   agent any
-   stages {
-     stage("clone git"){
-        steps {
-            git "https://github.com/mrdevops12/spring-petclinic.git"
-          }
+    agent {label 'MASTER'}
+    stages {
+        stage('Source'){
+            steps {
+                git 'https://github.com/spring-projects/spring-petclinic.git' 
+            }
         }
-     stage("build package"){
-       steps {
-          sh 'mvn package'
-         }
-       }
+        stage('Package'){
+            steps {
+                sh 'mvn package'
+            }
+        }
     }
-  }    
+}
